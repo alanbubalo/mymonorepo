@@ -1,0 +1,4 @@
+{
+  "include": ["src", "../../apps/main/src/screens/PageNotFound.tsx"],
+  "extends": "../../tsconfig.json"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@shared/ui",
+  "private": true,
+  "version": "1",
+  "main": "./src",
+  "dependencies": {
+    "dayjs": "^1.11.11",
+    "react": "^18.3.1",
+    "react-hook-form": "^7.52.1",
+    "tailwind-merge": "^2.3.0",
+    "throttle-debounce": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/throttle-debounce": "^5.0.2"
+  }
+}

@@ -1,4 +1,22 @@
 {
   "name": "mymonorepo",
-  "packageManager": "yarn@4.2.2"
+  "packageManager": "yarn@4.3.1",
+  "workspaces": [
+    "apps/*",
+    "shared/*"
+  ],
+  "scripts": {
+    "main": "yarn workspace main dev",
+    "biome": "biome check .",
+    "biome-lint": "biome lint .",
+    "biome-format": "biome format .",
+    "biome-format:fix": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7",
+    "typescript": "^5.5.4"
+  }
 }
