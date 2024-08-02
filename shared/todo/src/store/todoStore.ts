@@ -1,16 +1,26 @@
 import dayjs from "dayjs";
 import { create } from "zustand";
 import { ulid } from "ulidx";
-import type { TTodo, TTodoListState } from "../types/todo";
 import { storage } from "@shared/storage";
-import { TodoSchema } from "../schemas/TodoSchema";
+import { TodoSchema, type TTodo } from "../schemas/TodoSchema";
+import type { TTodoFormData } from "../schemas/TodoFormSchema";
+import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
 
-export const useTodoStore = create<TTodoListState>()((set, get) => ({
+type TodoState = {
+  todoList: TTodo[];
+  getTodoList: () => TTodo[];
+  getTodoById: (id: string) => TTodo | undefined;
+  getFilteredTodoList: (todoListParams: TTodoListParams) => TTodo[];
+  createTodo: (todoData: TTodoFormData) => void;
+  updateTodo: (todoData: TTodoFormData, id: string) => void;
+  deleteTodo: (id: string) => void;
+};
+
+export const useTodoStore = create<TodoState>()((set, get) => ({
   todoList: [] as TTodo[],
   getTodoList: () => {
-    const todoList = storage.getItem<TTodo[]>("todoList");
-
     try {
+      const todoList = storage.getItem<TTodo[]>("todoList");
       const parsedTodoList = todoList?.map((todo) => TodoSchema.parse(todo));
 
       return parsedTodoList || ([] as TTodo[]);

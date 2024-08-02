@@ -1,8 +1,8 @@
-import { test, expect, describe, vi, afterEach } from "vitest";
+import { test, expect, describe, afterEach } from "vitest";
 import { storage } from "../storage";
 import { localStorageMock } from "./mock/localStorageMock";
 
-vi.stubGlobal("localStorage", localStorageMock);
+globalThis.localStorage = localStorageMock;
 
 describe("Storage", () => {
   afterEach(() => {

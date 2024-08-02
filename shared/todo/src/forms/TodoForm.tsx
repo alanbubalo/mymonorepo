@@ -3,7 +3,7 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { FaTrashAlt } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
-import type { TTodo } from "../types/todo";
+import type { TTodo } from "../schemas/TodoSchema";
 import { TodoFormSchema, type TTodoFormData } from "../schemas/TodoFormSchema";
 
 interface ITodoFormProps {

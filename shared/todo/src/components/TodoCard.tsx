@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import type { TTodo } from "../types/todo";
+import type { TTodo } from "../schemas/TodoSchema";
 import { TodoState } from "../enums/TodoState";
 
 interface ITodoCardProps {

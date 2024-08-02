@@ -13,13 +13,9 @@ export const EditTodoScreen = () => {
   const { todoId } = useParams<TodoParams>();
   const { updateTodo, getTodoById, deleteTodo } = useTodoStore();
 
-  if (!todoId || !isValid(todoId)) {
-    return <PageNotFound />;
-  }
+  const todo = getTodoById(todoId ?? "");
 
-  const todo = getTodoById(todoId);
-
-  if (!todo) {
+  if (!todo || !isValid(todo.id)) {
     return <PageNotFound />;
   }
 
@@ -28,7 +24,7 @@ export const EditTodoScreen = () => {
       <Link className="hover:text-zinc-300 size-fit flex items-center gap-1" to="/">
         <IoArrowBackOutline /> Back to home
       </Link>
-      <TodoForm initData={todo} onSubmit={(newTodo) => updateTodo(newTodo, todoId)} onDelete={deleteTodo} />
+      <TodoForm initData={todo} onSubmit={(newTodo) => updateTodo(newTodo, todo.id)} onDelete={deleteTodo} />
     </div>
   );
 };

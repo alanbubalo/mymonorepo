@@ -13,4 +13,4 @@ export const TodoSchema = z.object({
   updated_at: z.string().refine((value) => dayjs(value).isValid()),
 });
 
-export type TodoSchemaType = z.infer<typeof TodoSchema>;
+export type TTodo = z.infer<typeof TodoSchema>;
