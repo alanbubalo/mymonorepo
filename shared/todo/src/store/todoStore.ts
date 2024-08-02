@@ -33,20 +33,20 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
       .getTodoList()
       .find((item) => item.id === id);
   },
-  getFilteredTodoList: ({ search, state }) => {
+  getFilteredTodoList: ({ search, status }) => {
     return get()
       .getTodoList()
       .filter((todo) => {
         const lowerCaseSearch = search.toLowerCase();
 
-        const isStateAll = state === "all";
+        const isStatusAll = status === "all";
         const searchMatchesDescription = todo.description.toLowerCase().includes(lowerCaseSearch);
         const searchMatchesCreatedBy = todo.created_by.toLowerCase().includes(lowerCaseSearch);
         const searchMatchesAssignedTo = todo.assigned_to.toLowerCase().includes(lowerCaseSearch);
 
         const isSearchMatchingAny = searchMatchesDescription || searchMatchesCreatedBy || searchMatchesAssignedTo;
 
-        return (isStateAll || todo.state === state) && isSearchMatchingAny;
+        return (isStatusAll || todo.status === status) && isSearchMatchingAny;
       });
   },
   createTodo: (todoData) => {

@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { TodoState } from "../enums/TodoState";
+import { TodoStatus } from "../enums/TodoStatus";
 
 export const TodoListParamsSchema = z.object({
   search: z.string().max(256),
-  state: z.nativeEnum({ ...TodoState, ALL: "all" as const }),
+  status: z.nativeEnum({ ...TodoStatus, ALL: "all" as const }),
 });
 
 export type TTodoListParams = z.infer<typeof TodoListParamsSchema>;

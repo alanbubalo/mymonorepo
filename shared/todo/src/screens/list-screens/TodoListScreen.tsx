@@ -6,7 +6,7 @@ import { getValidatedTodoListParams } from "../../utils/getValidatedTodoListPara
 import { SearchBarWithSelectFilter } from "@shared/ui";
 import { IoIosCheckmark } from "react-icons/io";
 
-const STATE_FILTER_OPTIONS = [
+const STATUS_FILTER_OPTIONS = [
   {
     value: "all",
     label: "All",
@@ -33,8 +33,8 @@ export const TodoListScreen = () => {
 
   const todoList = getFilteredTodoList(validatedSearchParams);
 
-  const search = (search: string, state: string) => {
-    setSearchParams({ search, state });
+  const search = (search: string, status: string) => {
+    setSearchParams({ search, status });
   };
 
   return (
@@ -43,10 +43,10 @@ export const TodoListScreen = () => {
         <Button>Create Todo</Button>
       </Link>
       <SearchBarWithSelectFilter
-        filterValue={validatedSearchParams.state}
+        filterValue={validatedSearchParams.status}
         searchQuery={validatedSearchParams.search}
         searchFn={search}
-        optionsList={STATE_FILTER_OPTIONS}
+        optionsList={STATUS_FILTER_OPTIONS}
       />
       <div className="flex flex-col gap-2 divide-y divide-zinc-600">
         {todoList.length > 0 ? (

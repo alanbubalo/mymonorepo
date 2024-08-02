@@ -38,7 +38,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
   };
 
   const description = register("description");
-  const state = register("state");
+  const status = register("status");
   const createdBy = register("created_by");
   const assignedTo = register("assigned_to");
 
@@ -56,14 +56,14 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           onBlur={description.onBlur}
         />
         <Select
-          ref={state.ref}
-          label="State"
-          name={state.name}
-          defaultValue={initData?.state ?? "pending"}
+          ref={status.ref}
+          label="Status"
+          name={status.name}
+          defaultValue={initData?.status ?? "pending"}
           disabled={!isEdit}
-          errors={errors.state}
-          onChange={state.onChange}
-          onBlur={state.onBlur}
+          errors={errors.status}
+          onChange={status.onChange}
+          onBlur={status.onBlur}
         >
           <option value="pending">Pending</option>
           <option value="in_progress">In progress</option>
@@ -96,7 +96,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           <Button
             className="bg-red-500 hover:bg-red-600 w-fit disabled:hover:bg-red-400/75 disabled:bg-red-400/75 flex items-center gap-1"
             onClick={handleDelete}
-            disabled={initData?.state !== "done"}
+            disabled={initData?.status !== "done"}
           >
             <FaTrashAlt /> Delete
           </Button>

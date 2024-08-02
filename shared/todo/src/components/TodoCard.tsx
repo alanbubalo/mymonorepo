@@ -3,7 +3,7 @@ import { MdEdit } from "react-icons/md";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import type { TTodo } from "../schemas/TodoSchema";
-import { TodoState } from "../enums/TodoState";
+import { TodoStatus } from "../enums/TodoStatus";
 
 interface ITodoCardProps {
   todo: TTodo;
@@ -12,10 +12,10 @@ interface ITodoCardProps {
 export const TodoCard = ({ todo }: ITodoCardProps) => {
   dayjs.extend(localizedFormat);
 
-  const stateClasses = {
-    [TodoState.PENDING]: "bg-zinc-400 text-zinc-950",
-    [TodoState.IN_PROGRESS]: "bg-blue-400 text-blue-950",
-    [TodoState.DONE]: "bg-green-400 text-green-950",
+  const statusClasses = {
+    [TodoStatus.PENDING]: "bg-zinc-400 text-zinc-950",
+    [TodoStatus.IN_PROGRESS]: "bg-blue-400 text-blue-950",
+    [TodoStatus.DONE]: "bg-green-400 text-green-950",
   };
 
   return (
@@ -24,8 +24,8 @@ export const TodoCard = ({ todo }: ITodoCardProps) => {
         <div className="flex flex-col gap-1">
           <div className="flex flex-row gap-3 items-center">
             <p>{todo.description}</p>
-            <span className={`${stateClasses[todo.state]} px-3 text-sm rounded-full size-fit`}>
-              {todo.state.replace("_", " ")}
+            <span className={`${statusClasses[todo.status]} px-3 text-sm rounded-full size-fit`}>
+              {todo.status.replace("_", " ")}
             </span>
           </div>
           <p className="text-zinc-400 text-sm">
