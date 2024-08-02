@@ -6,4 +6,4 @@ export const TodoListParamsSchema = z.object({
   state: z.nativeEnum({ ...TodoState, ALL: "all" as const }),
 });
 
-export type TodoListParamsSchemaType = z.infer<typeof TodoListParamsSchema>;
+export type TTodoListParams = z.infer<typeof TodoListParamsSchema>;

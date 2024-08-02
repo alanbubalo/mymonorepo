@@ -1,5 +1,6 @@
-import type { TodoSchemaType } from "../schemas/TodoSchema";
+import type { TTodoFormData } from "../schemas/TodoFormSchema";
 import type { TTodoState } from "../enums/TodoState";
+import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
 
 export type TTodo = {
   id: string;
@@ -15,8 +16,8 @@ export type TTodoListState = {
   todoList: TTodo[];
   getTodoList: () => TTodo[];
   getTodoById: (id: string) => TTodo | undefined;
-  getFilteredTodoList: (searchTerm: string, filterState: TTodoState | "all") => TTodo[];
-  createTodo: (todoData: TodoSchemaType) => void;
-  updateTodo: (todoData: TodoSchemaType, id: string) => void;
+  getFilteredTodoList: (todoListParams: TTodoListParams) => TTodo[];
+  createTodo: (todoData: TTodoFormData) => void;
+  updateTodo: (todoData: TTodoFormData, id: string) => void;
   deleteTodo: (id: string) => void;
 };

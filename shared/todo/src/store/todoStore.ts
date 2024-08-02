@@ -3,21 +3,27 @@ import { create } from "zustand";
 import { ulid } from "ulidx";
 import type { TTodo, TTodoListState } from "../types/todo";
 import { storage } from "@shared/storage";
-import { isTodoList } from "../utils/isTodoList";
+import { TodoSchema } from "../schemas/TodoSchema";
 
 export const useTodoStore = create<TTodoListState>()((set, get) => ({
   todoList: [] as TTodo[],
   getTodoList: () => {
     const todoList = storage.getItem<TTodo[]>("todoList");
 
-    return isTodoList(todoList) ? todoList : ([] as TTodo[]);
+    try {
+      const parsedTodoList = todoList?.map((todo) => TodoSchema.parse(todo));
+
+      return parsedTodoList || ([] as TTodo[]);
+    } catch (_error) {
+      return [] as TTodo[];
+    }
   },
   getTodoById: (id) => {
     return get()
       .getTodoList()
       .find((item) => item.id === id);
   },
-  getFilteredTodoList: (search, state) => {
+  getFilteredTodoList: ({ search, state }) => {
     return get()
       .getTodoList()
       .filter((todo) => {

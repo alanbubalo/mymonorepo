@@ -4,11 +4,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
 import type { TTodo } from "../types/todo";
-import { TodoSchema, type TodoSchemaType } from "../schemas/TodoSchema";
+import { TodoFormSchema, type TTodoFormData } from "../schemas/TodoFormSchema";
 
 interface ITodoFormProps {
   initData?: TTodo;
-  onSubmit: (data: TodoSchemaType) => void;
+  onSubmit: (data: TTodoFormData) => void;
   onDelete?: (id: string) => void;
 }
 
@@ -21,11 +21,11 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TodoSchemaType>({
-    resolver: zodResolver(TodoSchema),
+  } = useForm<TTodoFormData>({
+    resolver: zodResolver(TodoFormSchema),
   });
 
-  const onFormSubmit: SubmitHandler<TodoSchemaType> = (data) => {
+  const onFormSubmit: SubmitHandler<TTodoFormData> = (data) => {
     onSubmit(data);
     navigate("/");
   };

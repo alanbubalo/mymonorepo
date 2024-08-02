@@ -31,7 +31,7 @@ export const TodoListScreen = () => {
 
   const validatedSearchParams = getValidatedTodoListParams(searchParams);
 
-  const todoList = getFilteredTodoList(validatedSearchParams.search, validatedSearchParams.state);
+  const todoList = getFilteredTodoList(validatedSearchParams);
 
   const search = (search: string, state: string) => {
     setSearchParams({ search, state });
