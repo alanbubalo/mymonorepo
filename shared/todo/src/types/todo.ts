@@ -1,26 +1,22 @@
-import type { Dayjs } from "dayjs";
 import type { TodoSchemaType } from "../schemas/TodoSchema";
 import type { TTodoState } from "../enums/TodoState";
 
-export interface Todo {
+export type TTodo = {
   id: string;
   state: TTodoState;
   description: string;
   created_by: string;
   assigned_to: string;
-  created_at: Dayjs;
-  updated_at: Dayjs;
-}
+  created_at: string;
+  updated_at: string;
+};
 
-export interface TodoListState {
-  todoList: Todo[];
-  getTodoList: () => Todo[];
-  getTodoById: (id: string) => Todo | undefined;
-  getFilteredTodoList: (
-    searchTerm: string,
-    filterState: TTodoState | "all",
-  ) => Todo[];
-  createTodo: (todo: TodoSchemaType) => void;
-  updateTodo: (todo: TodoSchemaType, id: string) => void;
+export type TTodoListState = {
+  todoList: TTodo[];
+  getTodoList: () => TTodo[];
+  getTodoById: (id: string) => TTodo | undefined;
+  getFilteredTodoList: (searchTerm: string, filterState: TTodoState | "all") => TTodo[];
+  createTodo: (todoData: TodoSchemaType) => void;
+  updateTodo: (todoData: TodoSchemaType, id: string) => void;
   deleteTodo: (id: string) => void;
-}
+};

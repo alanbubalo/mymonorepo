@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import type { Todo } from "../types/todo";
+import type { TTodo } from "../types/todo";
 import { TodoState } from "../enums/TodoState";
 
-export const TodoCard = ({ todo }: { todo: Todo }) => {
+interface ITodoCardProps {
+  todo: TTodo;
+}
+
+export const TodoCard = ({ todo }: ITodoCardProps) => {
   dayjs.extend(localizedFormat);
 
   const stateClasses = {
@@ -20,9 +24,7 @@ export const TodoCard = ({ todo }: { todo: Todo }) => {
         <div className="flex flex-col gap-1">
           <div className="flex flex-row gap-3 items-center">
             <p>{todo.description}</p>
-            <span
-              className={`${stateClasses[todo.state]} px-3 text-sm rounded-full size-fit`}
-            >
+            <span className={`${stateClasses[todo.state]} px-3 text-sm rounded-full size-fit`}>
               {todo.state.replace("_", " ")}
             </span>
           </div>
@@ -39,15 +41,11 @@ export const TodoCard = ({ todo }: { todo: Todo }) => {
             <span className="text-zinc-400">Created by</span> {todo.created_by}
           </p>
           <p className="text-sm">
-            <span className="text-zinc-400">Assigned to</span>{" "}
-            {todo.assigned_to}
+            <span className="text-zinc-400">Assigned to</span> {todo.assigned_to}
           </p>
         </div>
       </div>
-      <Link
-        className="hover:text-zinc-300 size-fit flex items-center gap-1"
-        to={`/todo/edit/${todo.id}`}
-      >
+      <Link className="hover:text-zinc-300 size-fit flex items-center gap-1" to={`/todo/edit/${todo.id}`}>
         <MdEdit /> Edit
       </Link>
     </div>

@@ -1,12 +1,16 @@
 import dayjs from "dayjs";
 import { create } from "zustand";
 import { ulid } from "ulidx";
-import type { Todo, TodoListState } from "../types/todo";
+import type { TTodo, TTodoListState } from "../types/todo";
+import { storage } from "@shared/storage";
+import { isTodo } from "../utils/isTodo";
 
-export const useTodoStore = create<TodoListState>()((set, get) => ({
-  todoList: [] as Todo[],
+export const useTodoStore = create<TTodoListState>()((set, get) => ({
+  todoList: [] as TTodo[],
   getTodoList: () => {
-    return JSON.parse(localStorage.getItem("todoList") ?? "[]") as Todo[];
+    const todoList = storage.getItem<TTodo[]>("todoList");
+
+    return isTodo(todoList) ? todoList : ([] as TTodo[]);
   },
   getTodoById: (id) => {
     return get()
@@ -20,59 +24,46 @@ export const useTodoStore = create<TodoListState>()((set, get) => ({
         const lowerCaseSearch = search.toLowerCase();
 
         const isStateAll = state === "all";
-        const searchMatchesDescription = todo.description
-          .toLowerCase()
-          .includes(lowerCaseSearch);
-        const searchMatchesCreatedBy = todo.created_by
-          .toLowerCase()
-          .includes(lowerCaseSearch);
-        const searchMatchesAssignedTo = todo.assigned_to
-          .toLowerCase()
-          .includes(lowerCaseSearch);
+        const searchMatchesDescription = todo.description.toLowerCase().includes(lowerCaseSearch);
+        const searchMatchesCreatedBy = todo.created_by.toLowerCase().includes(lowerCaseSearch);
+        const searchMatchesAssignedTo = todo.assigned_to.toLowerCase().includes(lowerCaseSearch);
 
-        const isSearchMatchingAny =
-          searchMatchesDescription ||
-          searchMatchesCreatedBy ||
-          searchMatchesAssignedTo;
+        const isSearchMatchingAny = searchMatchesDescription || searchMatchesCreatedBy || searchMatchesAssignedTo;
 
         return (isStateAll || todo.state === state) && isSearchMatchingAny;
       });
   },
-  createTodo: (todo) => {
-    const newTodo: Todo = {
+  createTodo: (todoData) => {
+    const newTodo: TTodo = {
       id: ulid(),
-      created_at: dayjs(),
-      updated_at: dayjs(),
-      ...todo,
+      created_at: dayjs().format(),
+      updated_at: dayjs().format(),
+      ...todoData,
     };
 
     set((state) => {
       const updatedTodoList = [...state.getTodoList(), newTodo];
-      localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
+      storage.setItem("todoList", updatedTodoList);
 
       return { todoList: updatedTodoList };
     });
   },
-  updateTodo: (updatedTodo, id) => {
+  updateTodo: (todoData, id) => {
     set((state) => {
-      const updatedTodoList = state
-        .getTodoList()
-        .map((todo) =>
-          todo.id === id
-            ? { ...todo, ...updatedTodo, updated_at: dayjs() }
-            : todo,
-        );
-      localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
+      const updatedTodoList = state.getTodoList().map((todo) => {
+        const updatedTodo: TTodo = { ...todo, ...todoData, updated_at: dayjs().format() };
+
+        return todo.id === id ? updatedTodo : todo;
+      });
+      storage.setItem("todoList", updatedTodoList);
 
       return { todoList: updatedTodoList };
     });
   },
   deleteTodo: (id) => {
     set((state) => {
-      const updatedTodoList = state
-        .getTodoList()
-        .filter((todo) => todo.id !== id);
-      localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
+      const updatedTodoList = state.getTodoList().filter((todo) => todo.id !== id);
+      storage.setItem("todoList", updatedTodoList);
 
       return { todoList: updatedTodoList };
     });

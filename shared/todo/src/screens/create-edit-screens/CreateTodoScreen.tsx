@@ -8,10 +8,7 @@ export const CreateTodoScreen = () => {
 
   return (
     <div className="flex flex-col gap-4 justify-center">
-      <Link
-        className="hover:text-zinc-300 size-fit flex items-center gap-1"
-        to="/"
-      >
+      <Link className="hover:text-zinc-300 size-fit flex items-center gap-1" to="/">
         <IoArrowBackOutline /> Back to home
       </Link>
       <TodoForm onSubmit={createTodo} />

@@ -3,11 +3,11 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { FaTrashAlt } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
-import type { Todo } from "../types/todo";
+import type { TTodo } from "../types/todo";
 import { TodoSchema, type TodoSchemaType } from "../schemas/TodoSchema";
 
 interface ITodoFormProps {
-  initData?: Todo;
+  initData?: TTodo;
   onSubmit: (data: TodoSchemaType) => void;
   onDelete?: (id: string) => void;
 }
