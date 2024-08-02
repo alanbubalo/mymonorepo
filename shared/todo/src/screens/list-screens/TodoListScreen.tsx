@@ -4,6 +4,7 @@ import { useTodoStore } from "../../store/todoStore";
 import { Button } from "@shared/ui";
 import { getValidatedTodoListParams } from "../../utils/getValidatedTodoListParams";
 import { SearchBarWithSelectFilter } from "@shared/ui";
+import { IoIosCheckmark } from "react-icons/io";
 
 const STATE_FILTER_OPTIONS = [
   {
@@ -48,9 +49,16 @@ export const TodoListScreen = () => {
         optionsList={STATE_FILTER_OPTIONS}
       />
       <div className="flex flex-col gap-2 divide-y divide-zinc-600">
-        {todoList.map((todo) => (
-          <TodoCard key={todo.id} todo={todo} />
-        ))}
+        {todoList.length > 0 ? (
+          todoList.map((todo) => <TodoCard key={todo.id} todo={todo} />)
+        ) : (
+          <div className="flex flex-col justify-center items-center max-w-72 mx-auto mt-10">
+            <IoIosCheckmark className="size-32 " />
+
+            <h2 className="text-lg text-center">No tasks found!?</h2>
+            <p className="text-zinc-400 text-center mt-1">What a great day.</p>
+          </div>
+        )}
       </div>
     </div>
   );

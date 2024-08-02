@@ -3,14 +3,14 @@ import { create } from "zustand";
 import { ulid } from "ulidx";
 import type { TTodo, TTodoListState } from "../types/todo";
 import { storage } from "@shared/storage";
-import { isTodo } from "../utils/isTodo";
+import { isTodoList } from "../utils/isTodoList";
 
 export const useTodoStore = create<TTodoListState>()((set, get) => ({
   todoList: [] as TTodo[],
   getTodoList: () => {
     const todoList = storage.getItem<TTodo[]>("todoList");
 
-    return isTodo(todoList) ? todoList : ([] as TTodo[]);
+    return isTodoList(todoList) ? todoList : ([] as TTodo[]);
   },
   getTodoById: (id) => {
     return get()

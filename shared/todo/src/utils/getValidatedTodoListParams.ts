@@ -6,7 +6,7 @@ export const getValidatedTodoListParams = (searchParams: URLSearchParams) => {
       search: searchParams.get("search") || "",
       state: searchParams.get("state") || "all",
     });
-  } catch (_) {
+  } catch (_error) {
     return {
       search: searchParams.get("search") || "",
       state: "all" as const,

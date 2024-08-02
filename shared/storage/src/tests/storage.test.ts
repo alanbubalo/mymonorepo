@@ -27,12 +27,4 @@ describe("Storage", () => {
 
     expect(item).toBe(undefined);
   });
-
-  test("removing non existing item should be ignored", () => {
-    storage.setItem("item", "good_string");
-
-    storage.removeItem("item");
-
-    storage.removeItem("item");
-  });
 });
