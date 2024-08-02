@@ -2,8 +2,5 @@
   "name": "@shared/storage",
   "private": true,
   "version": "1",
-  "main": "./src",
-  "dependencies": {
-    "jsdom": "^24.1.1"
-  }
+  "main": "./src"
 }
