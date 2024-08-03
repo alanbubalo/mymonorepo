@@ -1,15 +1,15 @@
-import { test, expect, describe, afterEach } from "vitest";
+import { expect, describe, it, afterEach } from "vitest";
 import { storage } from "../storage";
 import { localStorageMock } from "./mock/localStorageMock";
 
 globalThis.localStorage = localStorageMock;
 
-describe("Storage", () => {
-  afterEach(() => {
-    storage.removeAll();
-  });
+afterEach(() => {
+  storage.removeAll();
+});
 
-  test("item of value 5 should be of type number", () => {
+describe("getItem", () => {
+  it("should return a number when retrieving a stored number value", () => {
     storage.setItem("item", 5);
 
     const item = storage.getItem<number>("item");
@@ -17,7 +17,7 @@ describe("Storage", () => {
     expect(typeof item).toBe("number");
   });
 
-  test("item of value undefined should be undefined", () => {
+  it("should return undefined when retrieving undefined", () => {
     storage.setItem("item", undefined);
 
     const item = storage.getItem("item");
@@ -25,7 +25,7 @@ describe("Storage", () => {
     expect(item).toBe(undefined);
   });
 
-  test("item of value null should be null", () => {
+  it("should return null when retrieving null", () => {
     storage.setItem("item", null);
 
     const item = storage.getItem("item");
@@ -33,7 +33,7 @@ describe("Storage", () => {
     expect(item).toBe(null);
   });
 
-  test("getting non existing item should return undefined", () => {
+  it("should return undefined if the item was not set", () => {
     const item = storage.getItem("item");
 
     expect(item).toBe(undefined);

@@ -17,7 +17,7 @@ export const storage = {
     localStorage.removeItem(key);
   },
   getAllKeys: (): string[] => {
-    const keys = [];
+    const keys = [] as string[];
 
     for (let step = 0; step < localStorage.length; step++) {
       keys.push(localStorage.key(step) as string);
