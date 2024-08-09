@@ -1,23 +1,21 @@
 import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
+import { formatDatetime } from "../utils/formatDatetime";
+import { datetimeDiff } from "../utils/datetimeDiff";
 import type { TTodo } from "../schemas/TodoSchema";
 import { TodoStatus } from "../enums/TodoStatus";
+
+const statusClasses = {
+  [TodoStatus.PENDING]: "bg-zinc-400 text-zinc-950",
+  [TodoStatus.IN_PROGRESS]: "bg-blue-400 text-blue-950",
+  [TodoStatus.DONE]: "bg-green-400 text-green-950",
+};
 
 interface ITodoCardProps {
   todo: TTodo;
 }
 
 export const TodoCard = ({ todo }: ITodoCardProps) => {
-  dayjs.extend(localizedFormat);
-
-  const statusClasses = {
-    [TodoStatus.PENDING]: "bg-zinc-400 text-zinc-950",
-    [TodoStatus.IN_PROGRESS]: "bg-blue-400 text-blue-950",
-    [TodoStatus.DONE]: "bg-green-400 text-green-950",
-  };
-
   return (
     <div className="w-full rounded-sm p-3 flex flex-row justify-between">
       <div className="flex flex-col gap-2">
@@ -29,10 +27,10 @@ export const TodoCard = ({ todo }: ITodoCardProps) => {
             </span>
           </div>
           <p className="text-zinc-400 text-sm">
-            {dayjs(todo.updated_at).diff(dayjs(todo.created_at)) !== 0 ? (
-              <span>Updated at {dayjs(todo.updated_at).format("llll")}</span>
+            {datetimeDiff(todo.updated_at, todo.created_at) !== 0 ? (
+              <span>Updated at {formatDatetime(todo.updated_at)}</span>
             ) : (
-              dayjs(todo.created_at).format("llll")
+              formatDatetime(todo.created_at)
             )}
           </p>
         </div>

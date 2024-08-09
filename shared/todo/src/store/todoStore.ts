@@ -9,7 +9,7 @@ import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
 type TodoState = {
   todoList: TTodo[];
   getTodoList: () => TTodo[];
-  getTodoById: (id: string) => TTodo | undefined;
+  getTodoById: (id: string | undefined) => TTodo | undefined;
   getFilteredTodoList: (todoListParams: TTodoListParams) => TTodo[];
   createTodo: (todoData: TTodoFormData) => void;
   updateTodo: (todoData: TTodoFormData, id: string) => void;
@@ -23,7 +23,7 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
       const todoList = storage.getItem<TTodo[]>("todoList");
       const parsedTodoList = todoList?.map((todo) => TodoSchema.parse(todo));
 
-      return parsedTodoList || ([] as TTodo[]);
+      return parsedTodoList ?? ([] as TTodo[]);
     } catch (_error) {
       return [] as TTodo[];
     }

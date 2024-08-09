@@ -31,7 +31,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
   };
 
   const handleDelete = () => {
-    if (typeof onDelete === "function") {
+    if (isEdit) {
       onDelete(initData?.id ?? "");
       navigate("/");
     }
@@ -44,7 +44,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)} className="flex flex-col h-full gap-5">
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <TextInput
           ref={description.ref}
           required

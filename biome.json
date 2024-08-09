@@ -10,14 +10,14 @@
     "globals": ["React", "JSX"]
   },
   "formatter": {
-    "ignore": ["node_modules", "package.json", "dev-tools", "./apps/**/dist/*"],
+    "ignore": ["node_modules", "package.json", "./apps/**/dist/*"],
     "formatWithErrors": true,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 120
   },
   "linter": {
-    "ignore": ["node_modules", "package.json", "dev-tools", "./apps/**/dist/*"],
+    "ignore": ["node_modules", "package.json", "./apps/**/dist/*"],
     "rules": {
       "a11y": {
         "noNoninteractiveTabindex": { "level": "off" },
