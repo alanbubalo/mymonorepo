@@ -5,14 +5,6 @@ const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
-  argTypes: {
-    label: { control: "text" },
-    disabled: { control: "boolean" },
-    name: { control: "text" },
-    defaultValue: { control: "text" },
-    required: { control: "boolean" },
-    errorMessage: { control: "text" },
-  },
 };
 
 export default meta;

@@ -14,17 +14,23 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = { args: { children: "Click me" } };
 
-export const Transparent: Story = { args: { children: "Click me", variant: "transparent" } };
+export const Primary: Story = { args: { ...Default.args, variant: "primary" } };
+export const Danger: Story = { args: { ...Default.args, variant: "danger" } };
+
+export const TransparentPrimary: Story = { args: { ...Default.args, variant: "primary", transparent: true } };
+export const TransparentDanger: Story = { args: { ...Default.args, variant: "danger", transparent: true } };
 
 export const WithLink = () => (
   <MemoryRouter initialEntries={["/"]}>
-    <Button to="/">Click me</Button>
+    <Button to="/" variant="primary" transparent={false} disabled={false}>
+      Click me
+    </Button>
   </MemoryRouter>
 );
 
 export const WithTransparentLink = () => (
   <MemoryRouter initialEntries={["/"]}>
-    <Button to="/" variant="transparent">
+    <Button to="/" variant="primary" transparent disabled={false}>
       Click me
     </Button>
   </MemoryRouter>

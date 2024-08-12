@@ -107,7 +107,8 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
         <Button type="submit">{isEdit ? "Update" : "Add"}</Button>
         {isEdit && (
           <Button
-            className="bg-red-500 hover:bg-red-600 w-fit disabled:hover:bg-red-400/75 disabled:bg-red-400/75 flex items-center gap-1"
+            className="w-fit flex items-center gap-1"
+            variant="danger"
             onClick={handleDelete}
             disabled={initData?.status !== "done"}
           >

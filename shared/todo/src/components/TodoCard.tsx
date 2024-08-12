@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 import { formatDatetime } from "../utils/formatDatetime";
 import { datetimeDiff } from "../utils/datetimeDiff";
 import type { TTodo } from "../schemas/TodoSchema";
 import { TodoStatus } from "../enums/TodoStatus";
+import { Button } from "@shared/ui";
 
 const statusClasses = {
   [TodoStatus.PENDING]: "bg-zinc-400 text-zinc-950",
@@ -43,9 +43,9 @@ export const TodoCard = ({ todo }: ITodoCardProps) => {
           </p>
         </div>
       </div>
-      <Link className="hover:text-zinc-300 size-fit flex items-center gap-1" to={`/todo/edit/${todo.id}`}>
+      <Button className="size-fit flex items-center gap-1" to={`/todo/edit/${todo.id}`} transparent>
         <MdEdit /> Edit
-      </Link>
+      </Button>
     </div>
   );
 };

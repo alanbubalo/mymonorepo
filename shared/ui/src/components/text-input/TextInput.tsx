@@ -1,21 +1,20 @@
-import { forwardRef } from "react";
-import type { ChangeHandler } from "react-hook-form";
+import { type ChangeEvent, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface ITextInputProps {
   className?: string;
   label?: string;
   name?: string;
-  required?: boolean;
+  required: boolean;
   placeholder?: string;
   defaultValue?: string;
-  errorMessage: string;
-  onChange: ChangeHandler | (() => void);
-  onBlur?: ChangeHandler;
+  errorMessage?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const TextInput = forwardRef<HTMLInputElement, ITextInputProps>(
-  ({ className, label, name, required, defaultValue, placeholder, errorMessage, onChange, onBlur }, ref) => {
+  ({ className, label, name, required = false, defaultValue, placeholder, errorMessage, onChange, onBlur }, ref) => {
     return (
       <div className="flex flex-col gap-1 w-full">
         {label && (

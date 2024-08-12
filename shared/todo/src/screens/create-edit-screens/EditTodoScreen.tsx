@@ -1,8 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { TodoForm } from "../../forms/TodoForm";
 import { useTodoStore } from "../../store/todoStore";
 import { PageNotFound } from "../../../../../apps/main/src/screens/PageNotFound";
+import { Button } from "@shared/ui";
 
 type TodoParams = {
   todoId: string;
@@ -18,9 +19,9 @@ export const EditTodoScreen = () => {
     <PageNotFound />
   ) : (
     <div className="flex flex-col gap-4 justify-center">
-      <Link className="hover:text-zinc-300 size-fit flex items-center gap-1" to="/">
+      <Button className="size-fit flex items-center gap-1" to="/" transparent>
         <IoArrowBackOutline /> Back to home
-      </Link>
+      </Button>
       <TodoForm initData={todo} onSubmit={(newTodo) => updateTodo(newTodo, todo.id)} onDelete={deleteTodo} />
     </div>
   );

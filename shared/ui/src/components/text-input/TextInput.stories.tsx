@@ -6,7 +6,9 @@ const meta: Meta<typeof TextInput> = {
   component: TextInput,
   tags: ["autodocs"],
   argTypes: {
+    className: { control: "text" },
     label: { control: "text" },
+    name: { control: "text" },
     placeholder: { control: "text" },
     defaultValue: { control: "text" },
     required: { control: "boolean" },

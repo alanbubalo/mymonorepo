@@ -1,22 +1,35 @@
-import type { ChangeHandler } from "react-hook-form";
-import { forwardRef } from "react";
+import { type ChangeEvent, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface ISelectProps {
   className?: string;
-  disabled?: boolean;
+  disabled: boolean;
   label?: string;
   name?: string;
-  required?: boolean;
-  defaultValue: string;
+  required: boolean;
+  defaultValue?: string;
   errorMessage?: string;
-  optionsList?: { value: string; label: string }[];
-  onChange: ChangeHandler | (() => void);
-  onBlur?: ChangeHandler;
+  optionsList: { value: string; label: string }[];
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  onBlur?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
-  ({ className, disabled, label, name, required, defaultValue, errorMessage, onChange, onBlur, optionsList }, ref) => {
+  (
+    {
+      className,
+      disabled = false,
+      label,
+      name,
+      required = false,
+      defaultValue,
+      errorMessage,
+      onChange,
+      onBlur,
+      optionsList = [],
+    },
+    ref,
+  ) => {
     return (
       <div className={`flex flex-col gap-1 ${disabled && "pointer-events-none opacity-65"}`}>
         {label && (
@@ -37,7 +50,7 @@ export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
           onChange={onChange}
           onBlur={onBlur}
         >
-          {optionsList?.map((option) => (
+          {optionsList.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

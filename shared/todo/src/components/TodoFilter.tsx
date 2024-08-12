@@ -2,7 +2,6 @@ import type { SetURLSearchParams } from "react-router-dom";
 import { SearchBar } from "@shared/ui";
 import { Select } from "@shared/ui";
 import { debounce } from "throttle-debounce";
-import { useRef } from "react";
 import { type TTodoListParams, TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
 
 const statusFilterOptions = [
@@ -37,10 +36,9 @@ export const TodoFilter = ({ searchParams, setSearchParams }: ITodoFilterProps) 
     });
   });
 
-  const selectRef = useRef<HTMLSelectElement>(null);
-  const handleStatusFilter = () => {
+  const handleStatusFilter = (status: string) => {
     setSearchParams((prev) => {
-      prev.set("status", selectRef.current?.value ?? "all");
+      prev.set("status", status);
       return prev;
     });
   };
@@ -49,10 +47,9 @@ export const TodoFilter = ({ searchParams, setSearchParams }: ITodoFilterProps) 
     <div className="flex gap-3 items-stretch flex-col sm:flex-row">
       <SearchBar onSearch={(searchTerm) => debouncedHandleSearchQuery(searchTerm)} defaultValue={searchParams.search} />
       <Select
-        ref={selectRef}
         name="searchbar-filter"
         className="sm:w-56"
-        onChange={handleStatusFilter}
+        onChange={(event) => handleStatusFilter(event.target.value)}
         defaultValue={searchParams.status}
         optionsList={statusFilterOptions}
       />
