@@ -3,7 +3,8 @@
   "packageManager": "yarn@4.3.1",
   "workspaces": [
     "apps/*",
-    "shared/*"
+    "shared/*",
+    "dev-tools/*"
   ],
   "scripts": {
     "main": "yarn workspace main dev",
@@ -13,7 +14,9 @@
     "biome-format:fix": "biome format --write .",
     "test": "vitest",
     "ts": "tsc",
-    "check": "yarn biome && yarn ts && yarn test"
+    "check": "yarn biome && yarn ts && yarn test",
+    "storybook": "yarn workspace @dev-tools/storybook storybook",
+    "build-storybook": "yarn workspace @dev-tools/storybook build-storybook"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

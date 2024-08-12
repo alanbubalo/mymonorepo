@@ -1,4 +1,4 @@
-export { Button } from "./components/Button";
-export { Select } from "./components/Select";
-export { TextInput } from "./components/TextInput";
-export { SearchBar } from "./components/SearchBar";
+export { Button } from "./components/button/Button";
+export { Select } from "./components/select/Select";
+export { TextInput } from "./components/text-input/TextInput";
+export { SearchBar } from "./components/search-bar/SearchBar";

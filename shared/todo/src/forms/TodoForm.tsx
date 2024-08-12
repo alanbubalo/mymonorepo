@@ -51,7 +51,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           label="Description"
           name={description.name}
           defaultValue={initData?.description ?? ""}
-          errors={errors.description}
+          errorMessage={errors.description?.message}
           onChange={description.onChange}
           onBlur={description.onBlur}
         />
@@ -61,7 +61,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           name={status.name}
           defaultValue={initData?.status ?? "pending"}
           disabled={!isEdit}
-          errors={errors.status}
+          errorMessage={errors.status?.message}
           onChange={status.onChange}
           onBlur={status.onBlur}
         >
@@ -75,7 +75,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           name={createdBy.name}
           required
           defaultValue={initData?.created_by ?? ""}
-          errors={errors.created_by}
+          errorMessage={errors.created_by?.message}
           onChange={createdBy.onChange}
           onBlur={createdBy.onBlur}
         />
@@ -85,7 +85,7 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           name={assignedTo.name}
           required
           defaultValue={initData?.assigned_to ?? ""}
-          errors={errors.assigned_to}
+          errorMessage={errors.assigned_to?.message}
           onChange={assignedTo.onChange}
           onBlur={assignedTo.onBlur}
         />
