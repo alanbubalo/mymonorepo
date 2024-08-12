@@ -5,12 +5,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
 import type { TTodo } from "../schemas/TodoSchema";
 import { TodoFormSchema, type TTodoFormData } from "../schemas/TodoFormSchema";
+import { TodoStatus } from "../enums/TodoStatus";
 
 interface ITodoFormProps {
   initData?: TTodo;
   onSubmit: (data: TTodoFormData) => void;
   onDelete?: (id: string) => void;
 }
+
+const statusOptions = [
+  {
+    value: TodoStatus.PENDING,
+    label: "Pending",
+  },
+  {
+    value: TodoStatus.IN_PROGRESS,
+    label: "In progress",
+  },
+  {
+    value: TodoStatus.DONE,
+    label: "Done",
+  },
+];
 
 export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
   const navigate = useNavigate();
@@ -64,11 +80,8 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
           errorMessage={errors.status?.message}
           onChange={status.onChange}
           onBlur={status.onBlur}
-        >
-          <option value="pending">Pending</option>
-          <option value="in_progress">In progress</option>
-          <option value="done">Done</option>
-        </Select>
+          optionsList={statusOptions}
+        />
         <TextInput
           ref={createdBy.ref}
           label="Created by"

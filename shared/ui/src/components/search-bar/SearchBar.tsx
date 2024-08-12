@@ -16,18 +16,16 @@ export const SearchBar = ({
   onSearch,
 }: ITextInputProps) => {
   return (
-    <div className="flex flex-col gap-1 w-full">
-      <input
-        name={name}
-        type="text"
-        placeholder={placeholder}
-        className={twMerge(
-          "w-full border border-zinc-500 bg-zinc-200/10 text-zinc-50 focus:outline-none px-4 py-2 rounded-md",
-          className,
-        )}
-        defaultValue={defaultValue}
-        onChange={({ target }) => onSearch(target.value)}
-      />
-    </div>
+    <input
+      name={name}
+      type="text"
+      placeholder={placeholder}
+      className={twMerge(
+        "inline-block w-full bg-zinc-600/50 text-zinc-50 border border-zinc-600 focus:outline-none px-4 py-2 rounded-md min-h-11",
+        className,
+      )}
+      defaultValue={defaultValue}
+      onChange={({ target }) => onSearch(target.value)}
+    />
   );
 };

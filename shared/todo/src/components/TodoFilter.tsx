@@ -54,13 +54,8 @@ export const TodoFilter = ({ searchParams, setSearchParams }: ITodoFilterProps) 
         className="sm:w-56"
         onChange={handleStatusFilter}
         defaultValue={searchParams.status}
-      >
-        {statusFilterOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </Select>
+        optionsList={statusFilterOptions}
+      />
     </div>
   );
 };

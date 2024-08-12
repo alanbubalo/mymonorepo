@@ -12,16 +12,20 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
-  args: {
-    children: "Click me",
-  },
-};
+export const Default: Story = { args: { children: "Click me" } };
 
 export const Transparent: Story = { args: { children: "Click me", variant: "transparent" } };
 
 export const WithLink = () => (
   <MemoryRouter initialEntries={["/"]}>
-    <Button to="/link">Click me</Button>
+    <Button to="/">Click me</Button>
+  </MemoryRouter>
+);
+
+export const WithTransparentLink = () => (
+  <MemoryRouter initialEntries={["/"]}>
+    <Button to="/" variant="transparent">
+      Click me
+    </Button>
   </MemoryRouter>
 );

@@ -10,16 +10,13 @@ interface ISelectProps {
   required?: boolean;
   defaultValue: string;
   errorMessage?: string;
+  optionsList?: { value: string; label: string }[];
   onChange: ChangeHandler | (() => void);
   onBlur?: ChangeHandler;
-  children: React.ReactNode;
 }
 
 export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
-  (
-    { className, disabled = false, label, name, required, defaultValue, errorMessage, onChange, onBlur, children },
-    ref,
-  ) => {
+  ({ className, disabled, label, name, required, defaultValue, errorMessage, onChange, onBlur, optionsList }, ref) => {
     return (
       <div className={`flex flex-col gap-1 ${disabled && "pointer-events-none opacity-65"}`}>
         {label && (
@@ -31,16 +28,20 @@ export const Select = forwardRef<HTMLSelectElement, ISelectProps>(
           ref={ref}
           name={name}
           className={twMerge(
-            "w-full border border-zinc-600 bg-zinc-200/10 text-zinc-50 focus:outline-none px-4 py-2 rounded-md h-10",
+            "w-full border border-zinc-600 bg-zinc-600/50 text-zinc-50 focus:outline-none px-4 py-2 rounded-md text-base min-h-11",
             errorMessage && "!bg-red-300/10 !text-red-600 !border-red-600",
             className,
           )}
           defaultValue={defaultValue}
-          tabIndex={!disabled ? 0 : -1}
+          tabIndex={disabled ? -1 : 0}
           onChange={onChange}
           onBlur={onBlur}
         >
-          {children}
+          {optionsList?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
         {errorMessage && <p className="text-red-600 text-sm">{errorMessage}</p>}
       </div>

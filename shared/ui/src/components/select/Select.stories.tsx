@@ -5,23 +5,28 @@ const meta: Meta<typeof Select> = {
   title: "Components/Select",
   component: Select,
   tags: ["autodocs"],
+  argTypes: {
+    label: { control: "text" },
+    disabled: { control: "boolean" },
+    name: { control: "text" },
+    defaultValue: { control: "text" },
+    required: { control: "boolean" },
+    errorMessage: { control: "text" },
+  },
 };
 
 export default meta;
 
-const mockOptions = (
-  <>
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
-  </>
-);
+const mockOptions = [
+  { value: "option1", label: "Option 1" },
+  { value: "option2", label: "Option 2" },
+  { value: "option3", label: "Option 3" },
+];
 
 type Story = StoryObj<typeof Select>;
 
-export const Default: Story = { args: { children: mockOptions } };
-export const WithLabel: Story = { args: { label: "Label", children: mockOptions } };
-export const Disabled: Story = { args: { disabled: true, children: mockOptions } };
+export const Default: Story = { args: { label: "Label", optionsList: mockOptions } };
+export const Disabled: Story = { args: { disabled: true, optionsList: mockOptions } };
 export const WithError: Story = {
-  args: { label: "Label", children: mockOptions, errorMessage: "Error", required: true },
+  args: { label: "Label", optionsList: mockOptions, errorMessage: "Error", required: true },
 };
