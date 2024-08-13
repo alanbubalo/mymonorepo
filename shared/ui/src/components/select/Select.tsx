@@ -3,10 +3,10 @@ import { twMerge } from "tailwind-merge";
 
 interface ISelectProps {
   className?: string;
-  disabled: boolean;
+  disabled?: boolean;
   label?: string;
   name?: string;
-  required: boolean;
+  required?: boolean;
   defaultValue?: string;
   errorMessage?: string;
   optionsList: { value: string; label: string }[];

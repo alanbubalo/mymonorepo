@@ -1,9 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { TodoForm } from "../../forms/TodoForm";
-import { useTodoStore } from "../../store/todoStore";
-import { PageNotFound } from "../../../../../apps/main/src/screens/PageNotFound";
-import { Button } from "@shared/ui";
+import { PageNotFound, ServerError } from "@shared/layouts";
+import { Button, LoadingSpinner } from "@shared/ui";
+import { useTodo } from "../../hooks/useTodo";
 
 type TodoParams = {
   todoId: string;
@@ -11,18 +11,36 @@ type TodoParams = {
 
 export const EditTodoScreen = () => {
   const { todoId } = useParams<TodoParams>();
-  const { updateTodo, getTodoById, deleteTodo } = useTodoStore();
 
-  const todo = getTodoById(todoId);
+  const todo = useTodo(todoId);
 
-  return !todo ? (
-    <PageNotFound />
-  ) : (
-    <div className="flex flex-col gap-4 justify-center">
+  if (todo.loading.fetching) {
+    return (
+      <div className="h-72 w-full">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (!todo.loading.fetching && todo.error) {
+    return <ServerError />;
+  }
+
+  if (!todo.loading.fetching && !todo.data) {
+    return <PageNotFound />;
+  }
+
+  return (
+    <div className="flex flex-col gap-4 justify-center w-full">
       <Button className="size-fit flex items-center gap-1" to="/" transparent>
         <IoArrowBackOutline /> Back to home
       </Button>
-      <TodoForm initData={todo} onSubmit={(newTodo) => updateTodo(newTodo, todo.id)} onDelete={deleteTodo} />
+      <TodoForm
+        initData={todo.data}
+        isSubmitting={todo.loading.updating}
+        onSubmit={todo.update}
+        onDelete={todo.delete}
+      />
     </div>
   );
 };

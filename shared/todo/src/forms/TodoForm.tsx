@@ -9,6 +9,7 @@ import { TodoStatus } from "../enums/TodoStatus";
 
 interface ITodoFormProps {
   initData?: TTodo;
+  isSubmitting: boolean;
   onSubmit: (data: TTodoFormData) => void;
   onDelete?: (id: string) => void;
 }
@@ -28,7 +29,7 @@ const statusOptions = [
   },
 ];
 
-export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
+export const TodoForm = ({ initData, isSubmitting, onSubmit, onDelete }: ITodoFormProps) => {
   const navigate = useNavigate();
 
   const isEdit = !!onDelete;
@@ -41,14 +42,14 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
     resolver: zodResolver(TodoFormSchema),
   });
 
-  const onFormSubmit: SubmitHandler<TTodoFormData> = (data) => {
-    onSubmit(data);
+  const onFormSubmit: SubmitHandler<TTodoFormData> = async (data) => {
+    await onSubmit(data);
     navigate("/");
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (isEdit) {
-      onDelete(initData?.id ?? "");
+      await onDelete(initData?.id ?? "");
       navigate("/");
     }
   };
@@ -104,7 +105,9 @@ export const TodoForm = ({ initData, onSubmit, onDelete }: ITodoFormProps) => {
         />
       </div>
       <div className="flex gap-3">
-        <Button type="submit">{isEdit ? "Update" : "Add"}</Button>
+        <Button type="submit" isLoading={isSubmitting}>
+          {isEdit ? "Update" : "Add"}
+        </Button>
         {isEdit && (
           <Button
             className="w-fit flex items-center gap-1"

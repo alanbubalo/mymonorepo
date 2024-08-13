@@ -1,16 +1,15 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { debounce } from "throttle-debounce";
-import { getTodoList } from "../api/fakeApiRequest";
+import { getTodoList } from "../api/todoRequests";
+import { TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
+import { QueryKeys } from "../enums/QueryKeys";
 
 export const useTodoList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryClient = useQueryClient();
-
-  console.log("searchParams", searchParams);
 
   const fetchingList = useQuery({
-    queryKey: ["todoList", searchParams],
+    queryKey: [QueryKeys.TODO_LIST, searchParams.toString()],
     queryFn: async () => getTodoList(searchParams),
   });
 
@@ -19,16 +18,20 @@ export const useTodoList = () => {
       prev.set("search", searchTerm);
       return prev;
     });
-    queryClient.invalidateQueries({ queryKey: ["todoList"] });
   };
 
   return {
     dataList: fetchingList.data ?? [],
     search: debounce(500, search),
-    filters: searchParams,
+    filters: {
+      search: searchParams.get("search") ?? "",
+      status: searchParams.get("status") ?? TodoListParamsStatus.ALL,
+    },
     setFilters: setSearchParams,
     loading: {
       fetching: fetchingList.isLoading,
     },
+    error: fetchingList.error,
+    isSuccess: fetchingList.isSuccess,
   };
 };

@@ -2046,21 +2046,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shared/storage@workspace:^, @shared/storage@workspace:shared/storage":
+"@shared/layouts@workspace:^, @shared/layouts@workspace:shared/layouts":
   version: 0.0.0-use.local
-  resolution: "@shared/storage@workspace:shared/storage"
+  resolution: "@shared/layouts@workspace:shared/layouts"
   languageName: unknown
   linkType: soft
 
-"@shared/todo-api@workspace:shared/todo-api":
+"@shared/storage@workspace:^, @shared/storage@workspace:shared/storage":
   version: 0.0.0-use.local
-  resolution: "@shared/todo-api@workspace:shared/todo-api"
-  dependencies:
-    "@shared/storage": "workspace:^"
-    "@tanstack/react-query": "npm:^5.51.23"
-    dayjs: "npm:^1.11.11"
-    react: "npm:^18.3.1"
-    ulidx: "npm:^2.3.0"
+  resolution: "@shared/storage@workspace:shared/storage"
   languageName: unknown
   linkType: soft
 
@@ -2070,6 +2064,7 @@ __metadata:
   dependencies:
     "@hookform/resolvers": "npm:^3.9.0"
     "@shared/storage": "workspace:^"
+    "@tanstack/react-query": "npm:^5.51.23"
     "@types/react-router-dom": "npm:^5.3.3"
     dayjs: "npm:^1.11.11"
     react: "npm:^18.3.1"
@@ -2084,7 +2079,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@shared/ui@workspace:^, @shared/ui@workspace:shared/ui":
+"@shared/ui@workspace:shared/ui":
   version: 0.0.0-use.local
   resolution: "@shared/ui@workspace:shared/ui"
   dependencies:
@@ -5464,8 +5459,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "main@workspace:apps/main"
   dependencies:
+    "@shared/layouts": "workspace:^"
     "@shared/todo": "workspace:^"
-    "@shared/ui": "workspace:^"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@vitejs/plugin-react": "npm:^4.3.1"

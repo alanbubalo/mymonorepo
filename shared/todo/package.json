@@ -5,8 +5,8 @@
   "main": "./src",
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
-    "@shared/todo-api": "workspace:^",
     "@shared/storage": "workspace:^",
+    "@tanstack/react-query": "^5.51.23",
     "dayjs": "^1.11.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
