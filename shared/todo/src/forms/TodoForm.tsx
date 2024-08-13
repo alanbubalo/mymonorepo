@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
 import type { TTodo } from "../schemas/TodoSchema";
 import { TodoFormSchema, type TTodoFormData } from "../schemas/TodoFormSchema";
-import { TodoStatus } from "../enums/TodoStatus";
+import { statusOptions } from "../data/statusOptions";
 
 interface ITodoFormProps {
   initData?: TTodo;
@@ -13,21 +13,6 @@ interface ITodoFormProps {
   onSubmit: (data: TTodoFormData) => void;
   onDelete?: (id: string) => void;
 }
-
-const statusOptions = [
-  {
-    value: TodoStatus.PENDING,
-    label: "Pending",
-  },
-  {
-    value: TodoStatus.IN_PROGRESS,
-    label: "In progress",
-  },
-  {
-    value: TodoStatus.DONE,
-    label: "Done",
-  },
-];
 
 export const TodoForm = ({ initData, isSubmitting, onSubmit, onDelete }: ITodoFormProps) => {
   const navigate = useNavigate();

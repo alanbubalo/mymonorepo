@@ -6,27 +6,8 @@ import { EmptyTodoList } from "../../components/EmptyTodoList";
 
 import { SearchBar } from "@shared/ui";
 import { Select } from "@shared/ui";
-import { TodoListParamsStatus } from "../../schemas/TodoListParamsSchema";
 import { ServerError } from "@shared/layouts";
-
-const statusFilterOptions = [
-  {
-    value: TodoListParamsStatus.ALL,
-    label: "All",
-  },
-  {
-    value: TodoListParamsStatus.PENDING,
-    label: "Pending",
-  },
-  {
-    value: TodoListParamsStatus.IN_PROGRESS,
-    label: "In progress",
-  },
-  {
-    value: TodoListParamsStatus.DONE,
-    label: "Done",
-  },
-];
+import { statusFilterOptions } from "../../data/statusOptions";
 
 export const TodoListScreen = () => {
   const { dataList, filters, setFilters, search, loading, error } = useTodoList();
