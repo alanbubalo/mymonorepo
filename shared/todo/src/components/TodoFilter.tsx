@@ -1,7 +1,7 @@
-import type { SetURLSearchParams } from "react-router-dom";
+// import type { SetURLSearchParams } from "react-router-dom";
 import { SearchBar } from "@shared/ui";
 import { Select } from "@shared/ui";
-import { debounce } from "throttle-debounce";
+// import { debounce } from "throttle-debounce";
 import { type TTodoListParams, TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
 
 const statusFilterOptions = [
@@ -25,31 +25,32 @@ const statusFilterOptions = [
 
 interface ITodoFilterProps {
   searchParams: TTodoListParams;
-  setSearchParams: SetURLSearchParams;
+  // setSearchParams: SetURLSearchParams;
+  search: () => void;
 }
 
-export const TodoFilter = ({ searchParams, setSearchParams }: ITodoFilterProps) => {
-  const debouncedHandleSearchQuery = debounce(500, (searchTerm: string) => {
-    setSearchParams((prev) => {
-      prev.set("search", searchTerm);
-      return prev;
-    });
-  });
+export const TodoFilter = ({ searchParams, search }: ITodoFilterProps) => {
+  // const debouncedHandleSearchQuery = debounce(500, (searchTerm: string) => {
+  //   search({ searchTerm, status: searchParams.status });
+  // });
 
-  const handleStatusFilter = (status: string) => {
-    setSearchParams((prev) => {
-      prev.set("status", status);
-      return prev;
-    });
-  };
+  // const handleStatusFilter = (status: string) => {
+  //   setSearchParams((prev) => {
+  //     prev.set("status", status);
+  //     return prev;
+  //   });
+  // };
 
   return (
     <div className="flex gap-3 items-stretch flex-col sm:flex-row">
-      <SearchBar onSearch={(searchTerm) => debouncedHandleSearchQuery(searchTerm)} defaultValue={searchParams.search} />
+      <SearchBar
+        onSearch={(searchTerm) => search({ searchTerm, status: searchParams.status })}
+        defaultValue={searchParams.search}
+      />
       <Select
         name="searchbar-filter"
         className="sm:w-56"
-        onChange={(event) => handleStatusFilter(event.target.value)}
+        onChange={(event) => search({ searchTerm: searchParams.search, status: event.target.value })}
         defaultValue={searchParams.status}
         optionsList={statusFilterOptions}
       />

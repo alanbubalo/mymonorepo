@@ -2052,6 +2052,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@shared/todo-api@workspace:shared/todo-api":
+  version: 0.0.0-use.local
+  resolution: "@shared/todo-api@workspace:shared/todo-api"
+  dependencies:
+    "@shared/storage": "workspace:^"
+    "@tanstack/react-query": "npm:^5.51.23"
+    dayjs: "npm:^1.11.11"
+    react: "npm:^18.3.1"
+    ulidx: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
+
 "@shared/todo@workspace:^, @shared/todo@workspace:shared/todo":
   version: 0.0.0-use.local
   resolution: "@shared/todo@workspace:shared/todo"
@@ -2553,6 +2565,24 @@ __metadata:
   peerDependencies:
     storybook: ^8.2.8
   checksum: 10/4f1fdb9a7ddcb1be15ae005920ead1c609d3eeda5f876951bdf35e856fcbb0084a735fedbfdd2dc7c5b49b13aac2f0c5b8d9517f75222a37f5f7fc17eb9f3341
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.51.21":
+  version: 5.51.21
+  resolution: "@tanstack/query-core@npm:5.51.21"
+  checksum: 10/6a70947f8c0936d0cdc278b60b07677aee7fbcdb7fc34c2b29cff8858443991742f64389724e9499f787bc003366a21c274450b5583350dc239559f03970908c
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.51.23":
+  version: 5.51.23
+  resolution: "@tanstack/react-query@npm:5.51.23"
+  dependencies:
+    "@tanstack/query-core": "npm:5.51.21"
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 10/89cc8db97e2ee12f9a5f6c4974259911f860cdccfc87dbf1e2060b13e353500af88196beff50111476d214b925a3d81c6b6849d2db8812f87bb956d26efd61cd
   languageName: node
   linkType: hard
 
