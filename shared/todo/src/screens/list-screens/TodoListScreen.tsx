@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
-import { TodoCard } from "../../components/TodoCard";
-import { Button, LoadingSpinner } from "@shared/ui";
-import { useTodoList } from "../../hooks/useTodoList";
-import { EmptyTodoList } from "../../components/EmptyTodoList";
-
-import { SearchBar } from "@shared/ui";
-import { Select } from "@shared/ui";
 import { ServerError } from "@shared/layouts";
+import { Button, LoadingSpinner, SearchBar, Select } from "@shared/ui";
+import { Link } from "react-router-dom";
+import { EmptyTodoList } from "../../components/EmptyTodoList";
+import { TodoCard } from "../../components/TodoCard";
 import { statusFilterOptions } from "../../data/statusOptions";
+import { useTodoList } from "../../hooks/useTodoList";
 
 export const TodoListScreen = () => {
   const { dataList, filters, setFilters, search, loading, error } = useTodoList();

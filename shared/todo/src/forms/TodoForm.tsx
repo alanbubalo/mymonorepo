@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { type SubmitHandler, useForm } from "react-hook-form";
-import { FaTrashAlt } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
-import type { TTodo } from "../schemas/TodoSchema";
-import { TodoFormSchema, type TTodoFormData } from "../schemas/TodoFormSchema";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { statusOptions } from "../data/statusOptions";
+import { type TTodoFormData, TodoFormSchema } from "../schemas/TodoFormSchema";
+import type { TTodo } from "../schemas/TodoSchema";
 
 interface ITodoFormProps {
   initData?: TTodo;

@@ -1,4 +1,4 @@
-import { expect, describe, it, afterEach } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { storage } from "../storage";
 import { localStorageMock } from "./mock/localStorageMock";
 

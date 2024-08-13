@@ -1,10 +1,10 @@
-import dayjs from "dayjs";
-import { create } from "zustand";
-import { ulid } from "ulidx";
 import { storage } from "@shared/storage";
-import { TodoSchema, type TTodo } from "../schemas/TodoSchema";
+import dayjs from "dayjs";
+import { ulid } from "ulidx";
+import { create } from "zustand";
 import type { TTodoFormData } from "../schemas/TodoFormSchema";
 import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
+import { type TTodo, TodoSchema } from "../schemas/TodoSchema";
 
 type TodoState = {
   todoList: TTodo[];

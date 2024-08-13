@@ -1,4 +1,4 @@
-import { content, theme, plugins } from "../../tailwind.config.js";
+import { content, plugins, theme } from "../../tailwind.config.js";
 
 export default {
   content: content,

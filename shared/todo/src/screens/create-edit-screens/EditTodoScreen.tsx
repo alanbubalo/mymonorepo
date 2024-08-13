@@ -1,8 +1,8 @@
+import { PageNotFound, ServerError } from "@shared/layouts";
+import { Button, LoadingSpinner } from "@shared/ui";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { TodoForm } from "../../forms/TodoForm";
-import { PageNotFound, ServerError } from "@shared/layouts";
-import { Button, LoadingSpinner } from "@shared/ui";
 import { useTodo } from "../../hooks/useTodo";
 
 type TodoParams = {

@@ -1,9 +1,9 @@
-import { MdEdit } from "react-icons/md";
-import { formatDatetime } from "../utils/formatDatetime";
-import { datetimeDiff } from "../utils/datetimeDiff";
-import type { TTodo } from "../schemas/TodoSchema";
-import { TodoStatus } from "../enums/TodoStatus";
 import { Button } from "@shared/ui";
+import { MdEdit } from "react-icons/md";
+import { TodoStatus } from "../enums/TodoStatus";
+import type { TTodo } from "../schemas/TodoSchema";
+import { datetimeDiff } from "../utils/datetimeDiff";
+import { formatDatetime } from "../utils/formatDatetime";
 
 const statusClasses = {
   [TodoStatus.PENDING]: "bg-zinc-400 text-zinc-950",

@@ -1,5 +1,5 @@
-import { twMerge } from "tailwind-merge";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 interface IButtonProps {

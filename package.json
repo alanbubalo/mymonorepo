@@ -12,6 +12,7 @@
     "biome-lint": "biome lint .",
     "biome-format": "biome format .",
     "biome-format:fix": "biome format --write .",
+    "biome:fix": "biome check --write .",
     "test": "vitest",
     "ts": "tsc",
     "check": "yarn biome && yarn ts && yarn test",

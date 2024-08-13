@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { debounce } from "throttle-debounce";
 import { getTodoList } from "../api/todoRequests";
-import { TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
 import { QueryKeys } from "../enums/QueryKeys";
+import { TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
 
 export const useTodoList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
