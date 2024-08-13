@@ -20,6 +20,13 @@ export const useTodoList = () => {
     });
   };
 
+  const setFilters = ({ search, status }: { search?: string; status?: string }) => {
+    const newSearch = new URLSearchParams(searchParams);
+    if (search) newSearch.set("search", search);
+    if (status) newSearch.set("status", status);
+    setSearchParams(newSearch);
+  };
+
   return {
     dataList: fetchingList.data ?? [],
     search: debounce(500, search),
@@ -27,7 +34,7 @@ export const useTodoList = () => {
       search: searchParams.get("search") ?? "",
       status: searchParams.get("status") ?? TodoListParamsStatus.ALL,
     },
-    setFilters: setSearchParams,
+    setFilters,
     loading: {
       fetching: fetchingList.isLoading,
     },

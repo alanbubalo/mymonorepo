@@ -19,12 +19,7 @@ export const TodoListScreen = () => {
         <Select
           name="status-filter"
           className="sm:w-56"
-          onChange={({ target }) =>
-            setFilters((prev) => {
-              prev.set("status", target.value);
-              return prev;
-            })
-          }
+          onChange={({ target }) => setFilters({ status: target.value })}
           defaultValue={filters.status}
           optionsList={statusFilterOptions}
         />

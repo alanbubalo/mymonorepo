@@ -3,7 +3,6 @@
     "ignore": ["apps/main/dist/"]
   },
   "organizeImports": {
-    "enabled": true,
     "ignore": ["node_modules", "package.json"]
   },
   "javascript": {
