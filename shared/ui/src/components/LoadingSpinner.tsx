@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 interface ILoadingSpinnerProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  color?: `border-t-${string}-${number}`;
+  color?: `border-t-${string}-${number}` | `border-t-${string}-${number}/${number}`;
   className?: string;
 }
 

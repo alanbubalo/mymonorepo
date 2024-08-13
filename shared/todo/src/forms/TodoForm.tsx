@@ -100,7 +100,7 @@ export const TodoForm = ({ initData, isSubmitting, onSubmit, onDelete }: ITodoFo
             onClick={handleDelete}
             disabled={initData?.status !== "done"}
           >
-            <FaTrashAlt /> Delete
+            <FaTrashAlt className="size-4" /> Delete
           </Button>
         )}
       </div>

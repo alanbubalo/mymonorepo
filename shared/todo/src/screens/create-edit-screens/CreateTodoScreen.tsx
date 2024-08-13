@@ -9,7 +9,7 @@ export const CreateTodoScreen = () => {
   return (
     <div className="flex flex-col gap-4 justify-center w-full">
       <Button className="size-fit flex items-center gap-1" to="/" transparent>
-        <IoArrowBackOutline /> Back to home
+        <IoArrowBackOutline className="size-4" /> Back to home
       </Button>
       <TodoForm onSubmit={todo.create} isSubmitting={todo.loading.creating} />
     </div>
