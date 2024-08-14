@@ -5,7 +5,7 @@ import type { TTodoFormData } from "../schemas/TodoFormSchema";
 import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
 import { type TTodo, TodoSchema } from "../schemas/TodoSchema";
 
-export const getParsedTodoList = () => {
+const getParsedTodoList = () => {
   try {
     const freshtodoList = storage.getItem<TTodo[]>("todoList") ?? ([] as TTodo[]);
     return freshtodoList?.map((todo) => TodoSchema.parse(todo));
@@ -14,7 +14,7 @@ export const getParsedTodoList = () => {
   }
 };
 
-export const getFilteredTodoList = (todoList: TTodo[], params: TTodoListParams) => {
+const getFilteredTodoList = (todoList: TTodo[], params: TTodoListParams) => {
   return todoList.filter((todo) => {
     const lowerCaseSearch = params.search.toLowerCase();
 
@@ -38,7 +38,7 @@ export const getTodoList = (params?: TTodoListParams) => {
   return parsedTodoList;
 };
 
-export const getTodoById = (id: string) => {
+export const getTodoById = (id?: string) => {
   return getTodoList().find((todo) => todo.id === id);
 };
 

@@ -7,7 +7,7 @@ export const getTodoListAsync = async (params?: TTodoListParams) => {
   return await fakeApiRequest(() => getTodoList(params));
 };
 
-export const getTodoByIdAsync = async (id: string) => {
+export const getTodoByIdAsync = async (id?: string) => {
   return await fakeApiRequest(() => getTodoById(id));
 };
 

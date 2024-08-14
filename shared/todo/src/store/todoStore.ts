@@ -5,10 +5,10 @@ import type { TTodo } from "../schemas/TodoSchema";
 import { createTodo, deleteTodo, getTodoById, getTodoList, updateTodo } from "../utils/todoUtils";
 
 type TodoState = {
-  todoId: string | undefined;
+  todoId?: string;
   setTodoId: (todoId?: string) => void;
   getTodoList: (params?: TTodoListParams) => TTodo[];
-  getTodoById: (id: string) => TTodo | undefined;
+  getTodoById: (todoId?: string) => TTodo | undefined;
   createTodo: (todoData: TTodoFormData) => void;
   updateTodo: (todoData: TTodoFormData) => void;
   deleteTodo: () => void;

@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Select, TextInput } from "@shared/ui";
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,7 @@ interface ITodoFormProps {
 
 export const TodoForm = ({ initData, isSubmitting = false, onSubmit, onDelete }: ITodoFormProps) => {
   const navigate = useNavigate();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const isEdit = !!onDelete;
 
@@ -34,6 +36,7 @@ export const TodoForm = ({ initData, isSubmitting = false, onSubmit, onDelete }:
 
   const handleDelete = async () => {
     if (isEdit) {
+      setIsDeleting(true);
       await onDelete(initData?.id ?? "");
       navigate("/");
     }
@@ -99,6 +102,7 @@ export const TodoForm = ({ initData, isSubmitting = false, onSubmit, onDelete }:
             variant="danger"
             onClick={handleDelete}
             disabled={initData?.status !== "done"}
+            isLoading={isDeleting}
           >
             <FaTrashAlt className="size-4" /> Delete
           </Button>
