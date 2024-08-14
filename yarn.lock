@@ -5455,6 +5455,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"main-zustand@workspace:apps/main-zustand":
+  version: 0.0.0-use.local
+  resolution: "main-zustand@workspace:apps/main-zustand"
+  dependencies:
+    "@shared/layouts": "workspace:^"
+    "@shared/todo": "workspace:^"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:^18.3.0"
+    "@vitejs/plugin-react": "npm:^4.3.1"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    typescript: "npm:^5.2.2"
+    vite: "npm:^5.3.4"
+  languageName: unknown
+  linkType: soft
+
 "main@workspace:apps/main":
   version: 0.0.0-use.local
   resolution: "main@workspace:apps/main"

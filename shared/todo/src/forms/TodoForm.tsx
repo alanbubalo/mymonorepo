@@ -9,12 +9,12 @@ import type { TTodo } from "../schemas/TodoSchema";
 
 interface ITodoFormProps {
   initData?: TTodo;
-  isSubmitting: boolean;
-  onSubmit: (data: TTodoFormData) => void;
-  onDelete?: (id: string) => void;
+  isSubmitting?: boolean;
+  onSubmit: (data: TTodoFormData) => void | Promise<void>;
+  onDelete?: (id: string) => void | Promise<boolean>;
 }
 
-export const TodoForm = ({ initData, isSubmitting, onSubmit, onDelete }: ITodoFormProps) => {
+export const TodoForm = ({ initData, isSubmitting = false, onSubmit, onDelete }: ITodoFormProps) => {
   const navigate = useNavigate();
 
   const isEdit = !!onDelete;

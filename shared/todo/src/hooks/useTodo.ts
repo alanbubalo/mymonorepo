@@ -1,5 +1,5 @@
 import { skipToken, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createTodo, deleteTodo, getTodoById, updateTodo } from "../api/todoRequests";
+import { createTodoAsync, deleteTodoAsync, getTodoByIdAsync, updateTodoAsync } from "../api/todoRequests";
 import { QueryKeys } from "../enums/QueryKeys";
 import type { TTodoFormData } from "../schemas/TodoFormSchema";
 
@@ -8,7 +8,7 @@ export const useTodo = (todoId?: string) => {
 
   const fetching = useQuery({
     queryKey: [QueryKeys.TODO, todoId],
-    queryFn: todoId ? async () => getTodoById(todoId) : skipToken,
+    queryFn: todoId ? async () => getTodoByIdAsync(todoId) : skipToken,
   });
 
   const onSuccess = () => {
@@ -18,7 +18,7 @@ export const useTodo = (todoId?: string) => {
 
   const creating = useMutation({
     mutationKey: [QueryKeys.TODO_CREATE],
-    mutationFn: async (newTodoData: TTodoFormData) => createTodo(newTodoData),
+    mutationFn: async (newTodoData: TTodoFormData) => createTodoAsync(newTodoData),
     onSuccess,
     onError: (error) => console.error(error),
   });
@@ -29,7 +29,7 @@ export const useTodo = (todoId?: string) => {
       if (!todoId) {
         throw new Error("No todoId provided");
       }
-      return await updateTodo(todoData, todoId);
+      return await updateTodoAsync(todoData, todoId);
     },
     onSuccess,
     onError: (error) => console.error(error),
@@ -41,7 +41,7 @@ export const useTodo = (todoId?: string) => {
       if (!todoId) {
         throw new Error("No todoId provided");
       }
-      return await deleteTodo(todoId);
+      return await deleteTodoAsync(todoId);
     },
     onSuccess,
     onError: (error) => console.error(error),
@@ -49,7 +49,7 @@ export const useTodo = (todoId?: string) => {
 
   return {
     data: fetching.data,
-    fetch: getTodoById(todoId),
+    fetch: getTodoByIdAsync(todoId),
     create: async (todoData: TTodoFormData) => creating.mutateAsync(todoData),
     update: async (todoData: TTodoFormData) => updating.mutateAsync(todoData),
     delete: async () => deleting.mutateAsync(),
