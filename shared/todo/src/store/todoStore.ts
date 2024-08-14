@@ -7,6 +7,8 @@ import type { TTodoListParams } from "../schemas/TodoListParamsSchema";
 import { type TTodo, TodoSchema } from "../schemas/TodoSchema";
 
 type TodoState = {
+  todoId: string | undefined;
+  setTodoId: (todoId: string | undefined) => void;
   todoList: TTodo[];
   getTodoList: () => TTodo[];
   getTodoById: (id: string | undefined) => TTodo | undefined;
@@ -17,6 +19,8 @@ type TodoState = {
 };
 
 export const useTodoStore = create<TodoState>()((set, get) => ({
+  todoId: undefined,
+  setTodoId: (todoId) => set({ todoId }),
   todoList: [] as TTodo[],
   getTodoList: () => {
     try {

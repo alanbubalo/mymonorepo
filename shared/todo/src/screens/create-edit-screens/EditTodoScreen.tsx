@@ -22,11 +22,11 @@ export const EditTodoScreen = () => {
     );
   }
 
-  if (!todo.loading.fetching && todo.error) {
+  if (todo.isError) {
     return <ServerError />;
   }
 
-  if (!todo.loading.fetching && !todo.data) {
+  if (!todo.data) {
     return <PageNotFound />;
   }
 

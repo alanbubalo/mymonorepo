@@ -20,6 +20,7 @@ export const useTodo = (todoId?: string) => {
     mutationKey: [QueryKeys.TODO_CREATE],
     mutationFn: async (newTodoData: TTodoFormData) => createTodo(newTodoData),
     onSuccess,
+    onError: (error) => console.error(error),
   });
 
   const updating = useMutation({
@@ -31,6 +32,7 @@ export const useTodo = (todoId?: string) => {
       return await updateTodo(todoData, todoId);
     },
     onSuccess,
+    onError: (error) => console.error(error),
   });
 
   const deleting = useMutation({
@@ -42,6 +44,7 @@ export const useTodo = (todoId?: string) => {
       return await deleteTodo(todoId);
     },
     onSuccess,
+    onError: (error) => console.error(error),
   });
 
   return {
@@ -52,10 +55,10 @@ export const useTodo = (todoId?: string) => {
     delete: async () => deleting.mutateAsync(),
 
     loading: {
-      fetching: fetching.isPending,
+      fetching: fetching.isLoading,
       creating: creating.isPending,
       updating: updating.isPending,
     },
-    error: fetching.error,
+    isError: fetching.isError,
   };
 };

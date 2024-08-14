@@ -8,7 +8,7 @@ export const useTodoRouter = () => {
       element: <MainLayout />,
       children: [
         {
-          index: true,
+          path: "/",
           loader: async () => redirect("/todo/list"),
         },
         { path: "/todo", loader: async () => redirect("/todo/list") },

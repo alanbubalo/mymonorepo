@@ -1,6 +1,5 @@
 import { ServerError } from "@shared/layouts";
 import { Button, LoadingSpinner, SearchBar, Select } from "@shared/ui";
-import { Link } from "react-router-dom";
 import { EmptyTodoList } from "../../components/EmptyTodoList";
 import { TodoCard } from "../../components/TodoCard";
 import { statusFilterOptions } from "../../data/statusOptions";
@@ -11,10 +10,10 @@ export const TodoListScreen = () => {
 
   return (
     <div className="flex flex-col gap-4 flex-1">
-      <Link to="/todo/create" className="size-fit">
-        <Button>Create Todo</Button>
-      </Link>
-      <div className="flex gap-3 items-stretch flex-col sm:flex-row">
+      <Button to="/todo/create" className="size-fit">
+        Create Todo
+      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row">
         <SearchBar onSearch={(searchTerm) => search(searchTerm)} defaultValue={filters.search} />
         <Select
           name="status-filter"
@@ -24,14 +23,13 @@ export const TodoListScreen = () => {
           optionsList={statusFilterOptions}
         />
       </div>
-      {loading.fetching && (
+      {loading.fetching ? (
         <div className="h-72">
           <LoadingSpinner />
         </div>
-      )}
-      {!loading.fetching && error ? (
+      ) : error ? (
         <ServerError />
-      ) : !loading.fetching && dataList.length === 0 ? (
+      ) : dataList.length === 0 ? (
         <EmptyTodoList />
       ) : (
         <div className="flex flex-col gap-2 divide-y divide-zinc-600">
