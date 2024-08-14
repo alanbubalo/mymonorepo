@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { debounce } from "throttle-debounce";
 import { getTodoList } from "../api/todoRequests";
 import { QueryKeys } from "../enums/QueryKeys";
-import { TodoListParamsStatus } from "../schemas/TodoListParamsSchema";
+import { TodoListParamsSchema } from "../schemas/TodoListParamsSchema";
 
 export const useTodoList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,10 +30,10 @@ export const useTodoList = () => {
   return {
     dataList: fetchingList.data ?? [],
     search: debounce(500, search),
-    filters: {
-      search: searchParams.get("search") ?? "",
-      status: searchParams.get("status") ?? TodoListParamsStatus.ALL,
-    },
+    filters: TodoListParamsSchema.parse({
+      search: searchParams.get("search"),
+      status: searchParams.get("status"),
+    }),
     setFilters,
     loading: {
       fetching: fetchingList.isLoading,
