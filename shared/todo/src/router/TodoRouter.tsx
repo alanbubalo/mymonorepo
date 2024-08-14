@@ -5,7 +5,7 @@ export const useTodoRouter = () => {
   return [
     {
       path: "",
-      element: <MainLayout />,
+      element: <MainLayout title="Todo App using Tanstack React Query" />,
       children: [
         {
           path: "/",

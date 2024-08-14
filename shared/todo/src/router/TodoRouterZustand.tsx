@@ -1,11 +1,11 @@
 import { redirect } from "react-router-dom";
-import { MainLayout } from "../screens/zustand/MainLayout";
+import { MainLayout } from "../screens/MainLayout";
 
 export const useTodoZustandRouter = () => {
   return [
     {
       path: "",
-      element: <MainLayout />,
+      element: <MainLayout title="Todo App using Zustand" />,
       children: [
         {
           path: "/",

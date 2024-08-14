@@ -1,7 +1,5 @@
-import { PageNotFound } from "@shared/layouts";
-import { Button } from "@shared/ui";
+import { CreateEditLayout, PageNotFound } from "@shared/layouts";
 import { useEffect } from "react";
-import { IoArrowBackOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { TodoForm } from "../../../forms/TodoForm";
 import { useTodoStore } from "../../../store/todoStore";
@@ -29,11 +27,8 @@ export const EditTodoScreen = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-center w-full">
-      <Button className="size-fit flex items-center gap-1" to="/" transparent>
-        <IoArrowBackOutline className="size-4" /> Back to home
-      </Button>
+    <CreateEditLayout>
       <TodoForm initData={todo} onSubmit={updateTodo} onDelete={deleteTodo} />
-    </div>
+    </CreateEditLayout>
   );
 };

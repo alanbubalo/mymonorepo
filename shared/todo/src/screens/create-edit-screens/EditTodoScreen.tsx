@@ -1,6 +1,5 @@
-import { PageNotFound, ServerError } from "@shared/layouts";
-import { Button, LoadingSpinner } from "@shared/ui";
-import { IoArrowBackOutline } from "react-icons/io5";
+import { CreateEditLayout, PageNotFound, ServerError } from "@shared/layouts";
+import { LoadingSpinner } from "@shared/ui";
 import { useParams } from "react-router-dom";
 import { TodoForm } from "../../forms/TodoForm";
 import { useTodo } from "../../hooks/useTodo";
@@ -31,16 +30,13 @@ export const EditTodoScreen = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-center w-full">
-      <Button className="size-fit flex items-center gap-1" to="/" transparent>
-        <IoArrowBackOutline className="size-4" /> Back to home
-      </Button>
+    <CreateEditLayout>
       <TodoForm
         initData={todo.data}
         isSubmitting={todo.loading.updating}
         onSubmit={todo.update}
         onDelete={todo.delete}
       />
-    </div>
+    </CreateEditLayout>
   );
 };

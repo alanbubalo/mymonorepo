@@ -11,6 +11,7 @@ interface IButtonProps {
   transparent?: boolean;
   disabled?: boolean;
   isLoading?: boolean;
+  icon?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -19,6 +20,7 @@ export const Button = ({
   className,
   to,
   onClick,
+  icon,
   type = "button",
   variant = "primary",
   transparent = false,
@@ -39,11 +41,13 @@ export const Button = ({
 
   return to ? (
     <Link to={to} className={buttonClass} aria-disabled={disabled}>
+      {icon}
       {children}
       {isLoading && <LoadingSpinner size="sm" color="border-t-blue-600" />}
     </Link>
   ) : (
     <button className={buttonClass} onClick={onClick} type={type ?? "button"} aria-disabled={disabled}>
+      {icon}
       {children}
       {isLoading && (
         <div className="absolute inset-0">
