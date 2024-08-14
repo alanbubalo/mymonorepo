@@ -1,3 +1,3 @@
-export { PageNotFound } from "./PageNotFound";
-export { ServerError } from "./ServerError";
-export { CreateEditLayout } from "./CreateEditLayout";
+export { PageNotFound } from "./layouts/PageNotFound";
+export { ServerError } from "./layouts/ServerError";
+export { CreateEditLayout } from "./layouts/CreateEditLayout";

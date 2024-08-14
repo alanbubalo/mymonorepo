@@ -4,6 +4,7 @@ export const fakeApiRequest = async <T>(callback: () => T): Promise<T> => {
 
     if (Math.random() <= 0.1) {
       reject(new Error("10 percent chance of error"));
+      return;
     }
 
     setTimeout(() => {

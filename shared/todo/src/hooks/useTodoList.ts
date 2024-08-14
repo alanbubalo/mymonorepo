@@ -20,6 +20,5 @@ export const useTodoList = () => {
       fetching: fetchingList.isLoading,
     },
     error: fetchingList.error,
-    isSuccess: fetchingList.isSuccess,
   };
 };
