@@ -7,7 +7,7 @@ export const getTodoListAsync = async (params?: TTodoListParams) => {
   return await fakeApiRequest(() => getTodoList(params));
 };
 
-export const getTodoByIdAsync = async (id: string | undefined) => {
+export const getTodoByIdAsync = async (id: string) => {
   return await fakeApiRequest(() => getTodoById(id));
 };
 
@@ -20,5 +20,5 @@ export const updateTodoAsync = async (todoData: TTodoFormData, id: string) => {
 };
 
 export const deleteTodoAsync = async (id: string) => {
-  return await fakeApiRequest<boolean>(() => deleteTodo(id));
+  return await fakeApiRequest(() => deleteTodo(id));
 };

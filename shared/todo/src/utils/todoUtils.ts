@@ -38,7 +38,7 @@ export const getTodoList = (params?: TTodoListParams) => {
   return parsedTodoList;
 };
 
-export const getTodoById = (id: string | undefined) => {
+export const getTodoById = (id: string) => {
   return getTodoList().find((todo) => todo.id === id);
 };
 
@@ -55,7 +55,7 @@ export const createTodo = (todoData: TTodoFormData) => {
   storage.setItem("todoList", updatedTodoList);
 };
 
-export const updateTodo = (todoData: TTodoFormData, id?: string) => {
+export const updateTodo = (todoData: TTodoFormData, id: string) => {
   const todoList = getTodoList();
   const updatedTodoList = todoList.map((todo) => {
     const updatedTodo: TTodo = { ...todo, ...todoData, updated_at: dayjs().format() };
@@ -65,12 +65,8 @@ export const updateTodo = (todoData: TTodoFormData, id?: string) => {
   storage.setItem("todoList", updatedTodoList);
 };
 
-export const deleteTodo = (id?: string) => {
+export const deleteTodo = (id: string) => {
   const todoList = getTodoList();
-
-  if (!id) {
-    return false;
-  }
 
   const updatedTodoList = todoList.filter((todo) => todo.id !== id);
 

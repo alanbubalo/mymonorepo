@@ -7,9 +7,8 @@ import { createTodo, deleteTodo, getTodoById, getTodoList, updateTodo } from "..
 type TodoState = {
   todoId: string | undefined;
   setTodoId: (todoId?: string) => void;
-  todoList: TTodo[];
   getTodoList: (params?: TTodoListParams) => TTodo[];
-  getTodoById: (id?: string) => TTodo | undefined;
+  getTodoById: (id: string) => TTodo | undefined;
   createTodo: (todoData: TTodoFormData) => void;
   updateTodo: (todoData: TTodoFormData) => void;
   deleteTodo: () => void;
@@ -18,14 +17,23 @@ type TodoState = {
 export const useTodoStore = create<TodoState>()((set, get) => ({
   todoId: undefined,
   setTodoId: (todoId) => set({ todoId }),
-  todoList: [] as TTodo[],
   getTodoList,
   getTodoById,
   createTodo,
   updateTodo: (todoData) => {
-    return updateTodo(todoData, get().todoId);
+    const todoId = get().todoId;
+    if (!todoId) {
+      console.error("No todoId provided");
+      return;
+    }
+    updateTodo(todoData, todoId);
   },
   deleteTodo: () => {
-    return deleteTodo(get().todoId);
+    const todoId = get().todoId;
+    if (!todoId) {
+      console.error("No todoId provided");
+      return;
+    }
+    deleteTodo(todoId);
   },
 }));
